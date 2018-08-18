@@ -957,7 +957,6 @@ class UnlockedDatabase:
         old_icon = str(self.database_manager.get_entry_icon_from_entry_uuid(entry_uuid))
 
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
-        scrolled_page.set_made_database_changes(True)
 
         if old_icon != button.get_name():
             if old_icon == "19":
@@ -980,15 +979,15 @@ class UnlockedDatabase:
                 scrolled_page.wifi_icon_button.set_active(False)
             if old_icon == "23":
                 scrolled_page.desktop_icon_button.set_active(False)
-
-        self.database_manager.set_entry_icon(entry_uuid, button.get_name())
+            scrolled_page.set_made_database_changes(True)
+            self.database_manager.set_entry_icon(entry_uuid, button.get_name())
 
     def on_entry_color_button_toggled(self, button):
+        print("on_entry_color_button_toggled")
         self.start_database_lock_timer()
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
 
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
-        scrolled_page.set_made_database_changes(True)
 
         old_color = self.database_manager.get_entry_color_from_entry_uuid(entry_uuid)
 
@@ -1014,6 +1013,8 @@ class UnlockedDatabase:
             if old_color == "BrownColorButton":
                 scrolled_page.brown_button.set_active(False)
                 scrolled_page.brown_button.get_children()[0].hide()
+            scrolled_page.set_made_database_changes(True)
+            self.database_manager.set_entry_color(entry_uuid, button.get_name())
 
         button.get_children()[0].show_all()
 
@@ -1026,8 +1027,6 @@ class UnlockedDatabase:
 
         if button.get_active() is False:
             button.get_children()[0].hide()
-
-        self.database_manager.set_entry_color(entry_uuid, button.get_name())
 
     def on_property_value_group_changed(self, widget, type):
         self.start_database_lock_timer()
