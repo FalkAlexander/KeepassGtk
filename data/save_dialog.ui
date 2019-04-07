@@ -23,6 +23,9 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <style>
+                  <class name="destructive-action"/>
+                </style>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -35,6 +38,8 @@
                 <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">Save</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
+                <property name="is_focus">True</property>
                 <property name="receives_default">True</property>
               </object>
               <packing>
