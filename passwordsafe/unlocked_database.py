@@ -514,6 +514,9 @@ class UnlockedDatabase:
             self.window.save_window_size()
             self.window.application.quit()
 
+    def on_save_dialog_cancel_button_clicked(self, widget, save_dialog, tab_close, timeout, quit):
+        save_dialog.destroy()
+
     def on_save_dialog_discard_button_clicked(self, widget, save_dialog, tab_close, timeout, quit):
         save_dialog.destroy()
         self.lock_database()
@@ -727,9 +730,11 @@ class UnlockedDatabase:
         save_dialog.set_transient_for(self.window)
 
         discard_button = builder.get_object("discard_button")
+        cancel_button = builder.get_object("cancel_button")
         save_button = builder.get_object("save_button")
 
         discard_button.connect("clicked", self.on_save_dialog_discard_button_clicked, save_dialog, tab_close, timeout, quit)
+        cancel_button.connect("clicked", self.on_save_dialog_cancel_button_clicked, save_dialog, tab_close, timeout, quit)
         save_button.connect("clicked", self.on_save_dialog_save_button_clicked, save_dialog, tab_close, timeout, quit)
 
         save_dialog.present()
