@@ -1,6 +1,7 @@
 from gi.repository import Gio, Gtk, GLib, Handy, Pango
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
+from pykeepass.exceptions import CredentialsIntegrityError
 import passwordsafe.config_manager
 import ntpath
 import os
@@ -263,7 +264,7 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=self.password_only, keyfile=None, logging_manager=self.window.logging_manager)
             GLib.idle_add(self.password_unlock_success)
-        except(OSError, ValueError, AttributeError, core.ChecksumError):
+        except(OSError, ValueError, AttributeError, core.ChecksumError, CredentialsIntegrityError):
             GLib.idle_add(self.password_unlock_failure)
 
     def password_unlock_success(self):
@@ -375,7 +376,7 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path, logging_manager=self.window.logging_manager)
             GLib.idle_add(self.keyfile_unlock_success)
-        except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError):
+        except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError, CredentialsIntegrityError):
             GLib.idle_add(self.keyfile_unlock_failure)
 
     def keyfile_unlock_success(self):
@@ -507,7 +508,7 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=self.password_composite, keyfile=self.composite_keyfile_path, logging_manager=self.window.logging_manager)
             GLib.idle_add(self.composite_unlock_success)
-        except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError):
+        except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError, CredentialsIntegrityError):
             GLib.idle_add(self.composite_unlock_failure)
 
     def composite_unlock_success(self):
