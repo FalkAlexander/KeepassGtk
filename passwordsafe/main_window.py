@@ -62,7 +62,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.headerbar = builder.get_object("headerbar")
 
         self.file_open_button = builder.get_object("open_button")
-        self.file_open_button.connect("clicked", self.open_filechooser, None)
+        self.file_open_button.connect("clicked", self.open_filechooser)
 
         self.file_new_button = builder.get_object("new_button")
         self.file_new_button.connect("clicked", self.create_filechooser)
@@ -293,7 +293,14 @@ class MainWindow(Gtk.ApplicationWindow):
         self._info_bar = None
         self._info_bar_response_id = None
 
-    def open_filechooser(self, _widget, _none):
+    def open_filechooser(self, _widget, _user_data=None):
+        """Callback function to open a safe.
+
+        This callback can be called from an action activate event or
+        a clicked event from a button. In the latter case, no user_data
+        is set. Having None as a default value allows to handle both
+        events reliably.
+        """
         # pylint: disable=too-many-locals
         if self._info_bar is not None:
             self._on_info_bar_response()
