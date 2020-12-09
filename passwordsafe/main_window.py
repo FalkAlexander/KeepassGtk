@@ -65,7 +65,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.file_open_button.connect("clicked", self.open_filechooser, None)
 
         self.file_new_button = builder.get_object("new_button")
-        self.file_new_button.connect("clicked", self.create_filechooser, None)
+        self.file_new_button.connect("clicked", self.create_filechooser)
 
         self.set_headerbar_button_layout()
 
@@ -391,7 +391,14 @@ class MainWindow(Gtk.ApplicationWindow):
     # Create Database Methods
     #
 
-    def create_filechooser(self, _widget, _none):
+    def create_filechooser(self, _widget, _user_data=None):
+        """Callback function to create a new safe.
+
+        This callback can be called from an action activate event or
+        a clicked event from a button. In the latter case, no user_data
+        is set. Having None as a default value allows to handle both
+        events reliably.
+        """
         filechooser_creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for creating a new keepass safe kdbx file
             _("Choose location for Keepass safe"),
