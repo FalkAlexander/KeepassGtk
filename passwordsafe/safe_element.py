@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import logging
 import typing
-from typing import NamedTuple
+from typing import Dict, List, NamedTuple, Optional, Union
 from uuid import UUID
 
 from gi.repository import GObject
@@ -12,7 +12,6 @@ from passwordsafe.color_widget import Color
 
 if typing.TYPE_CHECKING:
     from datetime import datetime
-    from typing import Dict, List, Optional, Union
 
     from pykeepass.attachment import Attachment
     from pykeepass.entry import Entry
