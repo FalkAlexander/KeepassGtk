@@ -437,5 +437,5 @@ class EntryPage(Gtk.ScrolledWindow):
         else:
             row.set_visible(False)
 
-    def _on_safe_entry_updated(self, _safe_entry):
+    def _on_safe_entry_updated(self, _safe_entry: SafeEntry) -> None:
         self.unlocked_database.start_database_lock_timer()
