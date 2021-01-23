@@ -336,7 +336,7 @@ class DatabaseManager(GObject.GObject):
 
     @GObject.Signal(arg_types=(SafeElement, object, object))
     def element_moved(
-        self, moved_element: SafeElement, _old_location_uuid: UUID, _new_location_uuid: UUID
+        self, _moved_element: SafeElement, _old_location_uuid: UUID, _new_location_uuid: UUID
     ) -> None:
         self.is_dirty = True
         logging.debug("Element moved safe")
