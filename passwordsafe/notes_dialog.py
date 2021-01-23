@@ -5,6 +5,8 @@ from gi.repository import Gdk, GObject, Gtk, Handy
 
 
 class NotesDialog:
+    # pylint: disable=too-many-instance-attributes
+
     def __init__(self, unlocked_database, safe_entry):
         self.__builder = Gtk.Builder()
         self.__builder.add_from_resource("/org/gnome/PasswordSafe/notes_dialog.ui")
