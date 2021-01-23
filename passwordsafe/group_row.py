@@ -80,7 +80,7 @@ class GroupRow(Gtk.ListBoxRow):
             self.unlocked_database.selection_ui.remove_group(self)
 
     @Gtk.Template.Callback()
-    def on_group_edit_button_clicked(self, button: Gtk.Button) -> None:
+    def on_group_edit_button_clicked(self, _button: Gtk.Button) -> None:
         """Edit button in a GroupRow was clicked
 
         button: The edit button in the GroupRow"""
