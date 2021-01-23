@@ -270,6 +270,7 @@ class UnlockedDatabase(GObject.GObject):
         list_model: Gio.ListStore,
         list_model_group_uuid: UUID,
     ) -> None:
+        # pylint: disable=too-many-arguments
         """Moves the element to a new list model.
         If the listmodel corresponds to the old group we remove it,
         and if corresponds to the new location, we add it."""
