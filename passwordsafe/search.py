@@ -17,6 +17,7 @@ if typing.TYPE_CHECKING:
 
 
 class Search:
+    # pylint: disable=too-many-instance-attributes
 
     _result_list = Gio.ListStore.new(SafeElement)
     search_list_box = NotImplemented
